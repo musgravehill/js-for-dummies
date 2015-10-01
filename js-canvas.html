@@ -4,8 +4,8 @@
         <meta charset="utf-8">
     </head>
     <body>
-        <input type="file" id="fileinput" />
-        <canvas id='thermalCanvas' class="thumbnail">Обновите браузер</canvas>      
+        <input type="file" id="fileinput" />        
+        <canvas id='thermalCanvas'>Обновите браузер</canvas>
     </body>
     <script type="text/javascript">
         /*
@@ -85,28 +85,32 @@
             var thermalCanvas = document.getElementById("thermalCanvas");
             var ctx = thermalCanvas.getContext('2d');
 
-            var canvasData = ctx.createImageData(64, 48);
-            ctx.clearRect(0, 0, 64, 48);
+            thermalCanvas.width = 640;
+            thermalCanvas.height = 480;
+            ctx.scale(10, 10);
+            ctx.rotate(Math.PI * 180);
+
+            var imageData = ctx.createImageData(64, 48);
+            ctx.clearRect(0, 0, thermalCanvas.width, thermalCanvas.height);
             //ctx.globalCompositeOperation = "saturation";
 
-            var canvasDataArray = [];
-            for (var row = 0; row < 48; row++) {
+            var imageDataArray = [];
+            for (var row = 47; row >= 0; row--) {
                 for (var col = 0; col < 64; col++) {
                     var i = row + col * 48;
                     var T = parseFloat(dataT[i]);
                     var colorRGB = temperatureToColor(T);
 
-                    canvasDataArray.push(colorRGB[0]);
-                    canvasDataArray.push(colorRGB[1]);
-                    canvasDataArray.push(colorRGB[2]);
-                    canvasDataArray.push(255);
+                    imageDataArray.push(colorRGB[0]);
+                    imageDataArray.push(colorRGB[1]);
+                    imageDataArray.push(colorRGB[2]);
+                    imageDataArray.push(255);
                 }
             }
-            canvasData.data.set(canvasDataArray);
-            ctx.putImageData(canvasData, 0, 0);
-            ctx.scale(10, 10);
-            ctx.rotate(Math.PI);
-            ctx.stroke;
+            imageData.data.set(imageDataArray);
+            ctx.putImageData(imageData, 0, 0);
+
+            ctx.drawImage(thermalCanvas, 0, 0, 640, 480);
         }
 
 
@@ -121,6 +125,5 @@
             return gradientMap[pos];
         }
 
-
-    </script>
+    </script>    
 </html>
