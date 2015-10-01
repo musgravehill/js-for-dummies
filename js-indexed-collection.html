@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">        
+    </head>
+    <body>
+
+    </body>
+    <script type="text/javascript">
+
+        var arr = new Array('Anna', 'Bob');
+        var arr = Array('Anna', 'Bob');
+        var arr = ['Anna', 'Bob'];
+        var arr2 = ['littleBoris'];
+        var res = arr.concat(arr2, arr);
+        arr.push('child');
+        var res = arr.join(' AND ');
+
+        //pop
+        //shift
+        //unshift
+        //slice(start_index, upto_index)
+        //splice(index, count_to_remove, addElement1, addElement2, ...)
+        //reverse
+
+        var sortFn = function(a, b) {
+            if (a[a.length - 1] < b[b.length - 1])
+                return -1;
+            if (a[a.length - 1] > b[b.length - 1])
+                return 1;
+            if (a[a.length - 1] == b[b.length - 1])
+                return 0;
+        }
+        arr.sort(sortFn);
+
+        //indexOf(searchElement[, fromIndex])
+        //lastIndexOf(searchElement[, fromIndex])
+        //forEach(callback[, thisObject])
+        //map(callback[, thisObject])
+        //filter(callback[, thisObject])
+        //every(callback[, thisObject])
+        //some(callback[, thisObject])
+
+        var a = [10, 20, 30];
+        var total = a.reduce(function(first, second) {
+            return first + second;
+        }, 0);
+        console.log(total) // 60
+
+
+        var numbers = [1, 2, 3, 4];
+        //var doubled = [i * 2 for (i of numbers)];
+        console.log(doubled); // logs 2,4,6,8
+//This is equivalent to the following map() operation:
+
+        var doubled = numbers.map(function(i) {
+            return i * 2;
+        });
+//Comprehensions can also be used to select items that match a particular expression. Here is a comprehension which selects only even numbers:
+
+        var numbers = [1, 2, 3, 21, 22, 30];
+        //var evens = [i for (i of numbers) if (i % 2 === 0)];
+        console.log(res);
+
+
+        //ArrayBuffer == fixed-length binary data buffer
+        /*
+         Int8Array	1	8-bit two's complement signed integer	byte	int8_t
+         Uint8Array	1	8-bit unsigned integer	octet	uint8_t
+         Uint8ClampedArray	1	8-bit unsigned integer (clamped)	octet	uint8_t
+         Int16Array	2	16-bit two's complement signed integer	short	int16_t
+         Uint16Array	2	16-bit unsigned integer	unsigned short	uint16_t
+         Int32Array	4	32-bit two's complement signed integer	long	int32_t
+         Uint32Array	4	32-bit unsigned integer	unsigned long	uint32_t
+         Float32Array	4	32-bit IEEE floating point number	unrestricted float	float
+         Float64Array	8	64-bit IEEE floating point number	unrestricted double	double
+         */
+    </script>
+</html>
