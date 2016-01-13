@@ -306,6 +306,22 @@
          $'	Inserts the portion of the string that follows the matched substring.
          $n or $nn	Where n or nn are decimal digits, inserts the nth parenthesized submatch string, provided the first argument was a RegExp object.
          */
+
+        /*
+         newString = "my XXzz".replace(/(X+)(z+)/, replacer)
+         Значения параметров при вызове replacer:
+
+         str
+         "XXzz" - совпавшая подстрока
+         p1
+         "XX" - первая скобка
+         p2
+         "zz" - вторая скобка
+         offset
+         3 - позиция в тексте для поиска
+         s
+         "my XXzz" - вызывающая строка, т.е строка для поиска
+         */
         res = s.replace(rgxp, '$2 $1');
         console.log(res);
 
